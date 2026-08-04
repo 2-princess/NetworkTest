@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   ShowTopMostFoldoutHeaderGroup: 1
+  playerRenderer: {fileID: 7778479316647237877}
 --- !u!136 &5100484894233336577
 CapsuleCollider:
   m_ObjectHideFlags: 0

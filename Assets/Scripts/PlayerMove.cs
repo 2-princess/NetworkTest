@@ -13,5 +13,9 @@ public class PlayerMove : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) return;
+
+        float h = Input.GetAxisRaw("Horizontal");
+
+        transform.position += Vector3.right * h * 3f * Time.deltaTime;
     }
 }

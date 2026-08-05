@@ -1,11 +1,11 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerMove : NetworkBehaviour
+public class PlayerNetwork : NetworkBehaviour
 {
-    public Renderer playerRenderer;
     private NetworkVariable<int> colorIndex = new NetworkVariable<int>();
-
+    public Renderer playerRenderer;
+    
     public override void OnNetworkSpawn()
     {
         colorIndex.OnValueChanged += ChangeColor;
@@ -17,19 +17,6 @@ public class PlayerMove : NetworkBehaviour
 
         ChangeColor(0, colorIndex.Value);
     }
-
-    void Update()
-    {
-        if (!IsOwner) return;
-        if (IsServer)
-        {
-            colorIndex.Value = (int)OwnerClientId;
-        }
-
-        float h = Input.GetAxisRaw("Horizontal");
-        transform.position += Vector3.right * h * 3f * Time.deltaTime;
-    }
-
     private void ChangeColor(int oldValue, int newValue)
     {
         if (newValue == 0)
@@ -39,6 +26,19 @@ public class PlayerMove : NetworkBehaviour
         else
         {
             playerRenderer.material.color = Color.red;
+        }
+    }
+    [Rpc(SendTo.Server)]
+    private void ChangeColorRpc()
+    {
+        Debug.Log($"RPC 실행 위치 - IsServer: {IsServer}");
+        if (colorIndex.Value == 0)
+        {
+            colorIndex.Value = 1;
+        }
+        else
+        {
+            colorIndex.Value = 0;
         }
     }
 }

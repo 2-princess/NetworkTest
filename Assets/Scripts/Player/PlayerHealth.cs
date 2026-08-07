@@ -22,7 +22,6 @@ public class PlayerHealth : NetworkBehaviour
     private IEnumerator RespawnRoutine()
     {
         yield return new WaitForSeconds(respawnDelay);
-        playerNetwork.ApplyCurrentColor();
         Respawn();
     }
 
@@ -31,6 +30,9 @@ public class PlayerHealth : NetworkBehaviour
         if (!IsServer) return;
         hp.Value = 100;
         isDead.Value = false;
+        Transform pos = SpawnManager.Instance.GetSpawnPoint((int)OwnerClientId);
+        transform.position = pos.position;
+        playerNetwork.ApplyCurrentColor();
     }
 
     private void ChangeHp(int oldHp, int newHp)

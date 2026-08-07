@@ -19,7 +19,7 @@ public class PlayerNetwork : NetworkBehaviour
     }
 
     [Rpc(SendTo.Everyone)]
-    public void ApplyCurrentColor()
+    public void ApplyCurrentColorRpc()
     {
         ChangeColor(0, colorIndex.Value);
     }

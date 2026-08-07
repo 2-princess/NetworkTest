@@ -49,13 +49,15 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.3.16f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/Scripts/Spawn/SpawnPoint.cs" />
+    <Compile Include="Assets/Scripts/Spawn/SpawnManager.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerNetwork.cs" />
+    <Compile Include="Assets/Scripts/Item/ItemSpawner.cs" />
     <Compile Include="Assets/Scripts/NetworkButtons.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerAttack.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerMove.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerHealth.cs" />
-    <Compile Include="Assets/Scripts/SpawnManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

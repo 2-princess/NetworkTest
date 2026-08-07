@@ -7,6 +7,7 @@ public class PlayerHealth : NetworkBehaviour
 {
     private NetworkVariable<int> hp = new NetworkVariable<int>(10);
     private NetworkVariable<bool> isDead = new NetworkVariable<bool>(false);
+    private SpawnPoint currentSpawnPoint;
     [SerializeField] private PlayerNetwork playerNetwork;
     [SerializeField] private Renderer playerRenderer;
     [SerializeField] private float respawnDelay = 3f;
@@ -19,20 +20,30 @@ public class PlayerHealth : NetworkBehaviour
         hpText.text = hp.Value.ToString();
         isDead.OnValueChanged += ChangeDeadState;
     }
+
+    [Rpc(SendTo.Owner)]
+    private void MoveToRespawnPointRpc(Vector3 position)
+    {
+        transform.position = position;
+    }
+
     private IEnumerator RespawnRoutine()
     {
         yield return new WaitForSeconds(respawnDelay);
         Respawn();
     }
-
     public void Respawn()
     {
         if (!IsServer) return;
         hp.Value = 100;
         isDead.Value = false;
-        Transform pos = SpawnManager.Instance.GetSpawnPoint((int)OwnerClientId);
-        transform.position = pos.position;
-        playerNetwork.ApplyCurrentColor();
+        if (currentSpawnPoint != null)
+        {
+            currentSpawnPoint.isUsed = false;
+        }
+        currentSpawnPoint = SpawnManager.Instance.GetEmptySpawnPoint();
+        MoveToRespawnPointRpc(currentSpawnPoint.transform.position);
+        playerNetwork.ApplyCurrentColorRpc();
     }
 
     private void ChangeHp(int oldHp, int newHp)
@@ -65,5 +76,6 @@ public class PlayerHealth : NetworkBehaviour
     {
         return isDead.Value;
     }
+
 }
 

@@ -13,7 +13,7 @@ public class PlayerAttack : NetworkBehaviour
     {
 
         if (!IsOwner) return;
-        if (playerHealth.IsDead())return;
+        if (playerHealth.IsDead()) return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -56,4 +56,5 @@ public class PlayerAttack : NetworkBehaviour
         yield return new WaitForSeconds(0.2f);
         attackEffect.SetActive(false);
     }
+
 }

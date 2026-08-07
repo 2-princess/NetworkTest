@@ -7,11 +7,14 @@ public class PlayerAttack : NetworkBehaviour
     public GameObject attackEffect;
     private float nextAttackTime;
     public Transform attackPoint;
+    [SerializeField] private PlayerHealth playerHealth;
 
     void Update()
     {
 
         if (!IsOwner) return;
+        if (playerHealth.IsDead())return;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             AttackRpc();

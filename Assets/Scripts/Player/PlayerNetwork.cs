@@ -5,7 +5,7 @@ public class PlayerNetwork : NetworkBehaviour
 {
     private NetworkVariable<int> colorIndex = new NetworkVariable<int>();
     public Renderer playerRenderer;
-    
+
     public override void OnNetworkSpawn()
     {
         colorIndex.OnValueChanged += ChangeColor;
@@ -17,6 +17,12 @@ public class PlayerNetwork : NetworkBehaviour
 
         ChangeColor(0, colorIndex.Value);
     }
+
+    public void ApplyCurrentColor()
+    {
+        ChangeColor(0, colorIndex.Value);
+    }
+
     private void ChangeColor(int oldValue, int newValue)
     {
         if (newValue == 0)

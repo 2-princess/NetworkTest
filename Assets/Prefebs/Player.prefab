@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 5544403599451740230}
   - component: {fileID: 8537835934762722199}
   - component: {fileID: 86180920871629450}
+  - component: {fileID: 5200619888038402681}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -379,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3295058450
+  GlobalObjectIdHash: 903241515
   InScenePlacedSourceGlobalObjectIdHash: 903241515
   DeferredDespawnTick: 0
   Ownership: 1
@@ -513,7 +514,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPickUp
   ShowTopMostFoldoutHeaderGroup: 1
+  playerStatus: {fileID: 5200619888038402681}
   handPos: {fileID: 5534757228416728001}
+--- !u!114 &5200619888038402681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718072344224767774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feaaa1bb85e1f4d5e848a97ea1efd137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &8933003661300223528
 GameObject:
   m_ObjectHideFlags: 0

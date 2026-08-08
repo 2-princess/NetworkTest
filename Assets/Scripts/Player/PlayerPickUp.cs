@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerPickUp : NetworkBehaviour
 {
+    public PlayerStatus playerStatus;
     public Transform handPos;
     // Update is called once per frame
     void Update()
@@ -25,6 +26,7 @@ public class PlayerPickUp : NetworkBehaviour
                 NetworkObject netObj = item.GetComponent<NetworkObject>();
                 if (netObj == null) continue;
                 netObj.Despawn();
+                playerStatus.AddGold(10);
                 break;
             }
         }

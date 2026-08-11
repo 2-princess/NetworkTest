@@ -11,6 +11,7 @@ public class PlayerStatus : NetworkBehaviour
     public CardDatabase cardDatabase;
 
     public NetworkVariable<int> miningBonus = new NetworkVariable<int>(0);
+    public NetworkVariable<int> fishingBonus = new NetworkVariable<int>(0);
 
     public override void OnNetworkSpawn()
     {
@@ -26,17 +27,16 @@ public class PlayerStatus : NetworkBehaviour
         Debug.Log("카드 이름은? " + cardData.cardName);
     }
 
-    [Rpc(SendTo.Server)]
-    public void UseCardRpc(int cardId)
+    public void AddFishingBonus(int mount)
     {
-        if (!cards.Contains(cardId)) return;
-
-        CardData cardData = cardDatabase.GetCardData(cardId);
-        if (cardData == null) return;
-        miningBonus.Value += cardData.effectValue;
-        cards.Remove(cardId);
+        if (!IsServer) return;
+        fishingBonus.Value += mount;
     }
-
+    public void AddMiningBonus(int mount)
+    {
+        if (!IsServer) return;
+        miningBonus.Value += mount;
+    }
     public void AddGold(int amount)
     {
         if (!IsServer) return;

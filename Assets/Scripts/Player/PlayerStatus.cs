@@ -8,6 +8,8 @@ public class PlayerStatus : NetworkBehaviour
     private NetworkVariable<int> ore = new NetworkVariable<int>(0);
     private NetworkList<int> cards = new NetworkList<int>();
 
+    public CardDatabase cardDatabase;
+
     public override void OnNetworkSpawn()
     {
         gold.OnValueChanged += ChangeGold;
@@ -17,8 +19,9 @@ public class PlayerStatus : NetworkBehaviour
 
     private void ChangeCard(NetworkListEvent<int> changeEvent)
     {
-        Debug.Log("카드 변경: " + changeEvent.Value);
-        Debug.Log("현재 카드수 : " + cards.Count);
+        CardData cardData = cardDatabase.GetCardData(changeEvent.Value);
+        if(cardData == null) return;
+        Debug.Log("카드 이름은? " + cardData.cardName);
     }
 
     public void AddGold(int amount)

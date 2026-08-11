@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b960f614368914ebebbb8a60befe7302, type: 3}
   m_Name: CardData
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardId: 0
-  cardName: 
+  cardId: 1
+  cardName: "\uCC44\uAD74\uAC15\uD654"

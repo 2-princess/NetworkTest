@@ -386,7 +386,7 @@ MonoBehaviour:
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
-  m_InScenePlaced: 1
+  m_InScenePlaced: 0
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
@@ -529,6 +529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
   ShowTopMostFoldoutHeaderGroup: 1
+  cardDatabase: {fileID: 11400000, guid: e8a8c144502e145298d8172a810a125d, type: 2}
 --- !u!1 &8933003661300223528
 GameObject:
   m_ObjectHideFlags: 0

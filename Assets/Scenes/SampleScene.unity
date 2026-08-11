@@ -630,8 +630,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemType: 2
-  itemId: 3
-  itemName: "\uCCA0"
+  itemId: 1
+  itemName: "\uCC44\uAD74\uAC15\uD654"
   value: 1
 --- !u!1 &1073642533
 GameObject:

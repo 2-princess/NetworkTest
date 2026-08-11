@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/Spawn/SpawnPoint.cs" />
+    <Compile Include="Assets/Scripts/Datas/CardDatabase.cs" />
     <Compile Include="Assets/Scripts/Spawn/SpawnManager.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerNetwork.cs" />
     <Compile Include="Assets/Scripts/Item/ItemSpawner.cs" />

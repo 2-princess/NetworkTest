@@ -57,6 +57,7 @@
     <Compile Include="Assets/Scripts/NetworkButtons.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerStatus.cs" />
     <Compile Include="Assets/Scripts/Datas/CardData.cs" />
+    <Compile Include="Assets/Scripts/Player/PlayerController.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerAttack.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerPickUp.cs" />

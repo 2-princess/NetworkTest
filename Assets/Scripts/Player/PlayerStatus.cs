@@ -6,9 +6,11 @@ public class PlayerStatus : NetworkBehaviour
 {
     private NetworkVariable<int> gold = new NetworkVariable<int>(0);
     private NetworkVariable<int> ore = new NetworkVariable<int>(0);
-    private NetworkList<int> cards = new NetworkList<int>();
+    public NetworkList<int> cards = new NetworkList<int>();
 
     public CardDatabase cardDatabase;
+
+    public NetworkVariable<int> miningBonus = new NetworkVariable<int>(0);
 
     public override void OnNetworkSpawn()
     {
@@ -20,8 +22,19 @@ public class PlayerStatus : NetworkBehaviour
     private void ChangeCard(NetworkListEvent<int> changeEvent)
     {
         CardData cardData = cardDatabase.GetCardData(changeEvent.Value);
-        if(cardData == null) return;
+        if (cardData == null) return;
         Debug.Log("카드 이름은? " + cardData.cardName);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void UseCardRpc(int cardId)
+    {
+        if (!cards.Contains(cardId)) return;
+
+        CardData cardData = cardDatabase.GetCardData(cardId);
+        if (cardData == null) return;
+        miningBonus.Value += cardData.effectValue;
+        cards.Remove(cardId);
     }
 
     public void AddGold(int amount)

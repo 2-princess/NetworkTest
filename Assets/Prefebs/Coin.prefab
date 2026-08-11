@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 5410508507831156627}
   - component: {fileID: 950513639375456301}
   - component: {fileID: 1275883425900724533}
+  - component: {fileID: 6775877311001123140}
   m_Layer: 0
-  m_Name: Item
+  m_Name: Coin
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,3 +140,19 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &6775877311001123140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752054594987127877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af1ad0aeda89466fb4ae36de6833d4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemType: 0
+  itemId: 1
+  itemName: Gold
+  value: 10

@@ -25,8 +25,21 @@ public class PlayerPickUp : NetworkBehaviour
             {
                 NetworkObject netObj = item.GetComponent<NetworkObject>();
                 if (netObj == null) continue;
+                ItemData itemData = item.GetComponent<ItemData>();
+                if (itemData == null) continue;
+                switch (itemData.itemType)
+                {
+                    case ItemData.ItemType.Gold:
+                        playerStatus.AddGold(itemData.value);
+                        break;
+                    case ItemData.ItemType.Ore:
+                        playerStatus.AddOre(itemData.value);
+                        break;
+                    case ItemData.ItemType.Card:
+                        playerStatus.AddCard(itemData.itemId);
+                        break;
+                }
                 netObj.Despawn();
-                playerStatus.AddGold(10);
                 break;
             }
         }

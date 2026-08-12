@@ -531,6 +531,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
   ShowTopMostFoldoutHeaderGroup: 1
+  gold:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
   cards:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
@@ -560,6 +565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTradeController
   ShowTopMostFoldoutHeaderGroup: 1
   playerStatus: {fileID: 5200619888038402681}
+  tradeTrans: {fileID: 5534757228416728001}
 --- !u!114 &3841225270739568306
 MonoBehaviour:
   m_ObjectHideFlags: 0

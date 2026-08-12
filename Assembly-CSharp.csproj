@@ -49,19 +49,20 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.3.16f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/Managers/SpawnManager.cs" />
     <Compile Include="Assets/Scripts/Spawn/SpawnPoint.cs" />
     <Compile Include="Assets/Scripts/Datas/CardDatabase.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerTradeController.cs" />
-    <Compile Include="Assets/Scripts/Spawn/SpawnManager.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerNetwork.cs" />
     <Compile Include="Assets/Scripts/Item/ItemSpawner.cs" />
-    <Compile Include="Assets/Scripts/NetworkButtons.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerStatus.cs" />
+    <Compile Include="Assets/Scripts/UI/RoundUI.cs" />
     <Compile Include="Assets/Scripts/Datas/CardData.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerController.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
     <Compile Include="Assets/Managers/GameStateManager.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerAttack.cs" />
+    <Compile Include="Assets/Managers/NetworkButtons.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerPickUp.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerMove.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerHealth.cs" />

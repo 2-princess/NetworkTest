@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class GameStateManager : NetworkBehaviour
     public NetworkVariable<int> round = new NetworkVariable<int>(1);
     public NetworkList<ulong> readyPlayers = new NetworkList<ulong>();
     public NetworkVariable<GameState> gameState = new NetworkVariable<GameState>(GameState.Ready);
+    public NetworkVariable<double> roundEndTime = new NetworkVariable<double>();
+    private double nextRoundTime;
 
     public enum GameState
     {
@@ -18,6 +21,25 @@ public class GameStateManager : NetworkBehaviour
     void Awake()
     {
         Instance = this;
+    }
+
+    void Update()
+    {
+        if (!IsServer) return;
+        if (gameState.Value == GameState.Playing)
+        {
+            if (NetworkManager.ServerTime.Time >= roundEndTime.Value)
+            {
+                EndRound();
+            }
+        }
+        if (gameState.Value == GameState.RoundEnd)
+        {
+            if (NetworkManager.ServerTime.Time >= nextRoundTime)
+            {
+                NextRound();
+            }
+        }
     }
 
     public override void OnNetworkSpawn()
@@ -44,6 +66,7 @@ public class GameStateManager : NetworkBehaviour
     {
         if (!IsServer) return;
         gameState.Value = GameState.RoundEnd;
+        nextRoundTime = NetworkManager.ServerTime.Time + 5;
         // NextRound(); 후에 결과보여주고
     }
 
@@ -52,6 +75,7 @@ public class GameStateManager : NetworkBehaviour
         if (!IsServer) return;
         gameState.Value = GameState.Playing;
         readyPlayers.Clear();
+        roundEndTime.Value = NetworkManager.ServerTime.Time + 60;
     }
 
     [Rpc(SendTo.Server)]
@@ -65,8 +89,6 @@ public class GameStateManager : NetworkBehaviour
             StartRound();
         }
     }
-
-
 
     public void NextRound()
     {

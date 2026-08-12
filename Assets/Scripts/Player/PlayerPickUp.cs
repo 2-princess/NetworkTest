@@ -18,6 +18,7 @@ public class PlayerPickUp : NetworkBehaviour
     [Rpc(SendTo.Server)]
     private void PickUpRPC()
     {
+        if (GameStateManager.Instance.gameState.Value != GameStateManager.GameState.Playing) return;
         Collider[] hits = Physics.OverlapSphere(handPos.position, 2f);
         foreach (Collider item in hits)
         {

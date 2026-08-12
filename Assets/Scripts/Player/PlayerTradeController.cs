@@ -20,6 +20,7 @@ public class PlayerTradeController : NetworkBehaviour
                     if (targetObj == null) continue;
                     ulong targetId = targetObj.OwnerClientId;
                     SendToGoldRpc(targetId, 10);
+                    break;
                 }
             }
         }
@@ -28,6 +29,7 @@ public class PlayerTradeController : NetworkBehaviour
     [Rpc(SendTo.Server)]
     private void SendToGoldRpc(ulong targetClientId, int amount)
     {
+        if (GameStateManager.Instance.gameState.Value != GameStateManager.GameState.Playing) return; // 게임중이아니면 리턴
         if (targetClientId == OwnerClientId) return;
         if (amount <= 0) return;
         if (playerStatus.gold.Value < amount) return; // 돈부족
@@ -35,6 +37,8 @@ public class PlayerTradeController : NetworkBehaviour
 
         NetworkObject targetPlayer = targetClient.PlayerObject;
         if (targetPlayer == null) return;
+        float distance = Vector3.Distance(transform.position, targetPlayer.transform.position);
+        if (distance > 2) return;
         PlayerStatus targetStatus = targetPlayer.GetComponent<PlayerStatus>();
         if (targetStatus == null) return;
         playerStatus.RemoveGold(amount);

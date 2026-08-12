@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStatus : NetworkBehaviour
 {
-    private NetworkVariable<int> gold = new NetworkVariable<int>(0);
+    public NetworkVariable<int> gold = new NetworkVariable<int>(0);
     private NetworkVariable<int> ore = new NetworkVariable<int>(0);
     public NetworkList<int> cards = new NetworkList<int>();
 
@@ -20,11 +20,23 @@ public class PlayerStatus : NetworkBehaviour
         cards.OnListChanged += ChangeCard;
     }
 
+    public void RemoveGold(int amount)
+    {
+        if (!IsServer) return;
+        gold.Value -= amount;
+    }
+
     private void ChangeCard(NetworkListEvent<int> changeEvent)
     {
         CardData cardData = cardDatabase.GetCardData(changeEvent.Value);
         if (cardData == null) return;
         Debug.Log("카드 이름은? " + cardData.cardName);
+    }
+
+    public void RemoveCards(int cardId)
+    {
+        if (!IsServer) return;
+        cards.Remove(cardId);
     }
 
     public void AddFishingBonus(int mount)

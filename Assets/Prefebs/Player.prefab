@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 8537835934762722199}
   - component: {fileID: 86180920871629450}
   - component: {fileID: 5200619888038402681}
+  - component: {fileID: -7727725846155854346}
   - component: {fileID: 3841225270739568306}
   m_Layer: 0
   m_Name: Player
@@ -530,12 +531,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
   ShowTopMostFoldoutHeaderGroup: 1
+  cards:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
   cardDatabase: {fileID: 11400000, guid: e8a8c144502e145298d8172a810a125d, type: 2}
   miningBonus:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
+  fishingBonus:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+--- !u!114 &-7727725846155854346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718072344224767774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f607d9ed76947f585e20ce41d150b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTradeController
+  ShowTopMostFoldoutHeaderGroup: 1
+  playerStatus: {fileID: 5200619888038402681}
 --- !u!114 &3841225270739568306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027e87f0e008c4bc6a99df7918155b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  ShowTopMostFoldoutHeaderGroup: 1
   playerStatus: {fileID: 5200619888038402681}
 --- !u!1 &8933003661300223528
 GameObject:

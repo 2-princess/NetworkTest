@@ -17,13 +17,20 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
+    //? 카드를 사용해도되는지 흐름
     [Rpc(SendTo.Server)]
     public void UseCardRpc(int cardId)
     {
         if (!playerStatus.cards.Contains(cardId)) return;
-
         CardData cardData = playerStatus.cardDatabase.GetCardData(cardId);
         if (cardData == null) return;
+        ApplyCardEffect(cardData);
+        playerStatus.RemoveCards(cardId);
+    }
+
+    //? 카드효과를 판단하는 흐름
+    private void ApplyCardEffect(CardData cardData)
+    {
         switch (cardData.cardEffectType)
         {
             case CardData.CardEffectType.Mining:
@@ -32,11 +39,6 @@ public class PlayerController : NetworkBehaviour
             case CardData.CardEffectType.Fishing:
                 playerStatus.AddFishingBonus(cardData.effectValue);
                 break;
-            case CardData.CardEffectType.MoveSpeed:
-                break;
-            case CardData.CardEffectType.Gold:
-                break;
         }
-        playerStatus.cards.Remove(cardId);
     }
 }

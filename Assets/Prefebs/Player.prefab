@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 7778479316647237877}
   - component: {fileID: 5675956953540926141}
   - component: {fileID: 7531060848208942273}
+  - component: {fileID: 1923093307483064797}
   - component: {fileID: 8692653403977861749}
   - component: {fileID: 7905131336768674352}
   - component: {fileID: 8540264497893696026}
@@ -396,6 +397,19 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &1923093307483064797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718072344224767774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd4e11c64096423dbafc86bea54e139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraController
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &8692653403977861749
 MonoBehaviour:
   m_ObjectHideFlags: 0

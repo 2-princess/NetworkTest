@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemSpawner : NetworkBehaviour
 {
-    [SerializeField] private GameObject itemPrefeb;
+    [SerializeField] private GameObject[] itemPrefebs;
     public Transform[] spawnPoints;
     public HashSet<int> usedSpawnPoints = new HashSet<int>();
     private List<NetworkObject> spawnItems = new List<NetworkObject>();
@@ -28,7 +28,7 @@ public class ItemSpawner : NetworkBehaviour
         {
             randInt = Random.Range(0, spawnPoints.Length);
         }
-        GameObject item = Instantiate(itemPrefeb, spawnPoints[randInt].position, Quaternion.identity);
+        GameObject item = Instantiate(itemPrefebs[Random.Range(0, itemPrefebs.Length)], spawnPoints[randInt].position, Quaternion.identity);
         NetworkObject networkItem = item.GetComponent<NetworkObject>();
         networkItem.Spawn();
         spawnItems.Add(networkItem);

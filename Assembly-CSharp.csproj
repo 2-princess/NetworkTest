@@ -65,6 +65,7 @@
     <Compile Include="Assets/Managers/NetworkButtons.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerPickUp.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerMove.cs" />
+    <Compile Include="Assets/Scripts/Item/RoundItemSpawner.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerHealth.cs" />
     <Compile Include="Assets/Scripts/Item/ItemData.cs" />
   </ItemGroup>

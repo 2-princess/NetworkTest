@@ -2,6 +2,7 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
+
 public class GameStateManager : NetworkBehaviour
 {
     public static GameStateManager Instance;
@@ -67,15 +68,14 @@ public class GameStateManager : NetworkBehaviour
         if (!IsServer) return;
         gameState.Value = GameState.RoundEnd;
         nextRoundTime = NetworkManager.ServerTime.Time + 5;
-        // NextRound(); 후에 결과보여주고
     }
 
     private void StartRound()
     {
         if (!IsServer) return;
+        roundEndTime.Value = NetworkManager.ServerTime.Time + 60f;
         gameState.Value = GameState.Playing;
         readyPlayers.Clear();
-        roundEndTime.Value = NetworkManager.ServerTime.Time + 60;
     }
 
     [Rpc(SendTo.Server)]

@@ -10,6 +10,7 @@ public class GameStateManager : NetworkBehaviour
     public NetworkList<ulong> readyPlayers = new NetworkList<ulong>();
     public NetworkVariable<GameState> gameState = new NetworkVariable<GameState>(GameState.Ready);
     public NetworkVariable<double> roundEndTime = new NetworkVariable<double>();
+    public NetworkVariable<int> playerCount = new NetworkVariable<int>(1);
     private double nextRoundTime;
 
     public enum GameState
@@ -22,6 +23,49 @@ public class GameStateManager : NetworkBehaviour
     void Awake()
     {
         Instance = this;
+    }
+    public override void OnNetworkSpawn()
+    {
+        round.OnValueChanged += OnchangeRound;
+        gameState.OnValueChanged += OnchangeState;
+        NetworkManager.OnClientDisconnectCallback += OnClientDisconnect;
+        NetworkManager.OnClientConnectedCallback += OnClientConnect;
+    }
+    public override void OnNetworkDespawn()
+    {
+        round.OnValueChanged -= OnchangeRound;
+        gameState.OnValueChanged -= OnchangeState;
+        NetworkManager.OnClientDisconnectCallback -= OnClientDisconnect;
+        NetworkManager.OnClientConnectedCallback -= OnClientConnect;
+    }
+
+    private void OnchangeRound(int oldValue, int newValue)
+    {
+        Debug.Log("라운드 변경 : " + oldValue + "->" + newValue);
+    }
+    private void OnchangeState(GameState oldValue, GameState newValue)
+    {
+        Debug.Log("상태 변경 : " + oldValue + "->" + newValue);
+    }
+
+    private void OnClientConnect(ulong clientId)
+    {
+        if (!IsServer) return;
+        Debug.Log("클라이언트 접속 ! : " + clientId);
+        playerCount.Value++;
+    }
+    private void OnClientDisconnect(ulong clientId)
+    {
+        if (!IsServer) return;
+        if (readyPlayers.Contains(clientId))
+        {
+            readyPlayers.Remove(clientId);
+        }
+        playerCount.Value--;
+        if (gameState.Value == GameState.Ready && readyPlayers.Count == NetworkManager.Singleton.ConnectedClients.Count)
+        {
+            StartRound();
+        }
     }
 
     void Update()
@@ -41,26 +85,6 @@ public class GameStateManager : NetworkBehaviour
                 NextRound();
             }
         }
-    }
-
-    public override void OnNetworkSpawn()
-    {
-        round.OnValueChanged += OnchangeRound;
-        gameState.OnValueChanged += OnchangeState;
-    }
-    public override void OnNetworkDespawn()
-    {
-        round.OnValueChanged -= OnchangeRound;
-        gameState.OnValueChanged -= OnchangeState;
-    }
-
-    private void OnchangeRound(int oldValue, int newValue)
-    {
-        Debug.Log("라운드 변경 : " + oldValue + "->" + newValue);
-    }
-    private void OnchangeState(GameState oldValue, GameState newValue)
-    {
-        Debug.Log("상태 변경 : " + oldValue + "->" + newValue);
     }
 
     public void EndRound()

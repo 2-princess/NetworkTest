@@ -56,6 +56,7 @@
     <Compile Include="Assets/Scripts/Player/PlayerNetwork.cs" />
     <Compile Include="Assets/Scripts/Item/ItemSpawner.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerStatus.cs" />
+    <Compile Include="Assets/Managers/ConnectManager.cs" />
     <Compile Include="Assets/Scripts/UI/RoundUI.cs" />
     <Compile Include="Assets/Scripts/Datas/CardData.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerController.cs" />

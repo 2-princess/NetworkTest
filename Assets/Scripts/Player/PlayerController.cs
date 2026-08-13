@@ -15,6 +15,10 @@ public class PlayerController : NetworkBehaviour
             int cardId = playerStatus.cards[0];
             UseCardRpc(cardId);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameStateManager.Instance.ReadyRpc();
+        }
     }
 
     //? 카드를 사용해도되는지 흐름

@@ -11,7 +11,6 @@ public class PlayerAttack : NetworkBehaviour
 
     void Update()
     {
-
         if (!IsOwner) return;
         if (playerHealth.IsDead()) return;
 

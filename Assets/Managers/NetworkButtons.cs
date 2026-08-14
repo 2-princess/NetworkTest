@@ -8,10 +8,5 @@ public class NetworkButtons : MonoBehaviour
         {
             ConnectManager.Instance.StartHost();
         }
-
-        if (GUI.Button(new Rect(250, 10, 300, 200), "Client 접속"))
-        {
-            ConnectManager.Instance.StartClient();
-        }
     }
 }

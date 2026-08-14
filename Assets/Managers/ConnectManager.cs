@@ -1,9 +1,12 @@
+using TMPro;
 using Unity.Netcode;
+using Unity.Services.Multiplayer;
 using UnityEngine;
 
 public class ConnectManager : MonoBehaviour
 {
     public static ConnectManager Instance;
+    [SerializeField] private TMP_Text codeNumber;
 
     void Awake()
     {
@@ -33,9 +36,18 @@ public class ConnectManager : MonoBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
         NetworkManager.Singleton.StartClient();
     }
-    public void StartHost()
+
+    public async void StartHost()
     {
         NetworkManager.Singleton.ConnectionApprovalCallback = ApprovalCheck;
-        NetworkManager.Singleton.StartHost();
+
+        SessionOptions options = new SessionOptions
+        {
+            MaxPlayers = 8
+        }.WithRelayNetwork();
+
+        var session = await MultiplayerService.Instance.CreateSessionAsync(options);
+        codeNumber.text = session.Code;
+        Debug.Log("방 코드 : " + session.Code);
     }
 }
